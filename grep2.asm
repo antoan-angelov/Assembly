@@ -1,5 +1,5 @@
 ; This program checks whether a user entered word exists in a text file.
-; It is case insensitive. Text file must be less than 256 bytes and entered word must be under 10 characters.
+; It is case insensitive. Text file must be less than 256 bytes and entered word can be at most 10 characters.
 masm
 model medium
 .386
