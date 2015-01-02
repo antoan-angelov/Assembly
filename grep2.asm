@@ -1,18 +1,18 @@
 masm
 model medium
 .386
-.stack	256
+.stack  256
 .data
 myword db 10 dup (0) ; word is max 10 characters long
 word_max equ $-myword
 filename db "file.txt", 0
-point_fname	dd filename
+point_fname dd filename
 buffer db 128 dup(?)
 buffer_size equ $-buffer
 enter_word_message db 'Enter word to search: $'
 success_message db 'Word was successfully found.$'
 fail_message db 'Word was not found.$'
-point_read	dd buffer
+point_read  dd buffer
 handle dw 0
 word_len dw 0
 bytes_read db 0
@@ -20,15 +20,15 @@ start_pos dw 0
 match_count db 0
 .code
 main:
-	mov	ax,@data
-	mov	ds,ax
+    mov ax,@data
+    mov ds,ax
     
     ; opening file
     lds dx, point_fname    
     xor ax, ax
     xor cx, cx
-	mov	ah,3Dh    
-	int 21h
+    mov ah,3Dh    
+    int 21h
     mov handle, ax
     
     ; exit if file not found
@@ -36,9 +36,9 @@ main:
 
 ; show enter word message
 input:
-    mov	ah, 09h
-	mov	dx, offset enter_word_message
-	int 21h
+    mov ah, 09h
+    mov dx, offset enter_word_message
+    int 21h
     mov cx, word_max
     xor si, si
 
@@ -170,16 +170,16 @@ reset:
 
 ; word was found in file
 success:
-    mov	ah, 09h
-	mov	dx, offset success_message
-	int	21h
+    mov ah, 09h
+    mov dx, offset success_message
+    int 21h
     jmp close_file
 
 ; word was not found in file`
 fail:
-    mov	ah, 09h
-	mov	dx, offset fail_message
-	int	21h
+    mov ah, 09h
+    mov dx, offset fail_message
+    int 21h
     jmp close_file
     
 close_file:
@@ -188,6 +188,6 @@ close_file:
     int 21h
 
 exit:
-	mov	ax,4c00h	
-	int	21h	
-end	main		
+    mov ax,4c00h    
+    int 21h 
+end main        
