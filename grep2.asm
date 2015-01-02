@@ -1,3 +1,5 @@
+; This program checks whether a user entered word exists in a text file.
+; It is case insensitive. Text file must be less than 256 bytes and entered word must be under 10 characters.
 masm
 model medium
 .386
@@ -7,7 +9,7 @@ myword db 10 dup (0) ; word is max 10 characters long
 word_max equ $-myword
 filename db "file.txt", 0
 point_fname dd filename
-buffer db 128 dup(?)
+buffer db 255 dup(?)
 buffer_size equ $-buffer
 enter_word_message db 'Enter word to search: $'
 success_message db 'Word was successfully found.$'
